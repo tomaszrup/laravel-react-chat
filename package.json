@@ -15,11 +15,16 @@
         "bootstrap": "^4.0.0",
         "cross-env": "^5.1",
         "jquery": "^3.2",
+        "laravel-echo": "^1.4.1",
         "laravel-mix": "^2.0",
         "lodash": "^4.17.5",
         "popper.js": "^1.12",
         "pusher-js": "^4.3.1",
         "react": "^16.2.0",
-        "react-dom": "^16.2.0"
+        "react-dom": "^16.2.0",
+        "react-redux": "^5.1.1",
+        "redux": "^4.0.1",
+        "redux-thunk": "^2.3.0",
+        "thunk": "0.0.1"
     }
 }

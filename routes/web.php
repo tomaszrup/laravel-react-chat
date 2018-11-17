@@ -18,3 +18,16 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::any('/home/{query}',
+  function() { return redirect('/home'); })
+  ->where('query', '.*');
+
+Route::prefix('api')->group(function() {
+  Route::get('/conversation/{user}', 'Api\ConversationController@index');
+  Route::post('/conversation/{user}', 'Api\ConversationController@store');
+  
+  Route::get('/user', function() {
+    return Auth::user();
+  });
+});
