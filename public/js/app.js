@@ -53141,7 +53141,7 @@ var ChatContainer = function (_Component) {
     value: function componentDidMount() {
       // Maybe add a timeline on redux
       this.props.onFetchUser().then(function () {
-        TweenMax.from('.chat-container', 0.9, {
+        TweenMax.from('.chat-container', 1.2, {
           height: 0,
           opacity: 0,
           ease: SlowMo.easeIn
@@ -54966,6 +54966,7 @@ var Chat = function (_Component) {
       this.props.onSendMessage(this.state.id);
       this.props.onAddLocalMsgToConversation(this.props.message);
 
+      this.props.onFetchConversationWith(this.state.id);
       // Not the best implementation
       this.refs.input.value = '';
       this.props.onUpdateMessage('');
@@ -55112,10 +55113,11 @@ var Message = function (_Component) {
     key: 'render',
     value: function render() {
       var className = 'message-body ' + (this.props.data.sender_id === this.props.user.id || !this.props.data.sender_id ? 'sent' : 'received');
-      //let isSent = this.props.data.sender_id ? '' : (<i style={{float: 'right'}} className="fa fa-paper-plane-o" aria-hidden="true"></i>);
+      var isSent = this.props.data.sender_id ? '' : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-paper-plane-o', 'aria-hidden': 'true' });
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'message' },
+        isSent,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'span',
           { className: className },
@@ -55311,7 +55313,7 @@ exports = module.exports = __webpack_require__(93)(false);
 
 
 // module
-exports.push([module.i, "body {\r\n  background-color: white;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  position: relative;\r\n  height: 100vh;\r\n}\r\n\r\n.top-bar {\r\n  background-color: #7b1fa2;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n  width: 100%;\r\n  height: 120px;\r\n  z-index: 0;\r\n}\r\n\r\n.chat-container {\r\n  z-index: 1;\r\n  height: 85vh;\r\n  width: 50vw;\r\n  background-color: white;\r\n  position: relative;\r\n  display: flex;\r\n  flex-direction: row;\r\n  min-width: 700px;\r\n}\r\n\r\n.left-section {\r\n  flex: 1;\r\n  display: flex;\r\n  flex-direction: column\r\n}\r\n\r\n.right-section {\r\n  flex: 3;\r\n}\r\n\r\n.user-panel {\r\n  flex: 1;\r\n  background-color: #d8d8d8;\r\n}\r\n\r\n.friend-list {\r\n  background-color: #e8e8e8;\r\n  padding: 30px;\r\n  flex: 9;\r\n}\r\n\r\n.chat {\r\n  flex: 3;\r\n  padding: 30px;\r\n  height: 100%;\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n\r\n.messages {\r\n  flex: 1;\r\n  overflow-y: scroll;\r\n  overflow-x: hidden;\r\n}\r\n\r\n.message {\r\n  width: 100%;\r\n  height: auto;\r\n  margin-top: 5px;\r\n  clear: both;\r\n}\r\n\r\n.message-body {\r\n  background-color: #e8e8e8;\r\n  padding: 10px;\r\n}\r\n\r\n.message-body.sent {\r\n  float: right;\r\n  border-top-left-radius: 10px;\r\n  border-bottom-left-radius: 10px;\r\n}\r\n\r\n.message-body.received {\r\n  float: left;\r\n  border-top-right-radius: 10px;\r\n  border-bottom-right-radius: 10px;\r\n}\r\n\r\n\r\n.styled-scrollbar::-webkit-scrollbar-track\r\n{\r\n\tborder-radius: 10px;\r\n\tbackground-color: #F5F5F5;\r\n}\r\n\r\n.styled-scrollbar::-webkit-scrollbar\r\n{\r\n\twidth: 12px;\r\n\tbackground-color: #F5F5F5;\r\n}\r\n\r\n.styled-scrollbar::-webkit-scrollbar-thumb\r\n{\r\n\tborder-radius: 10px;\r\n\tbackground-color: #555;\r\n}\r\n\r\n.inputs {\r\n  display: flex;\r\n  flex-direction: row;\r\n  align-items: center;\r\n}\r\n\r\n.send-button {\r\n  margin-left: 10px;\r\n  background-color: #7b1fa2;\r\n  color: white;\r\n  border-radius: 50%;\r\n  border: none;\r\n  height: 32px;\r\n  width: 32px;\r\n  cursor: pointer;\r\n}\r\n", ""]);
+exports.push([module.i, "body {\r\n  background-color: white;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  position: relative;\r\n  height: 100vh;\r\n}\r\n\r\n.top-bar {\r\n  background-color: #7b1fa2;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n  width: 100%;\r\n  height: 120px;\r\n  z-index: 0;\r\n}\r\n\r\n.chat-container {\r\n  z-index: 1;\r\n  height: 85vh;\r\n  width: 50vw;\r\n  background-color: white;\r\n  position: relative;\r\n  display: flex;\r\n  flex-direction: row;\r\n  min-width: 700px;\r\n}\r\n\r\n.left-section {\r\n  flex: 1;\r\n  display: flex;\r\n  flex-direction: column\r\n}\r\n\r\n.right-section {\r\n  flex: 3;\r\n}\r\n\r\n.user-panel {\r\n  flex: 1;\r\n  background-color: #d8d8d8;\r\n}\r\n\r\n.friend-list {\r\n  background-color: #e8e8e8;\r\n  padding: 30px;\r\n  flex: 9;\r\n}\r\n\r\n.chat {\r\n  flex: 3;\r\n  padding: 30px;\r\n  height: 100%;\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n\r\n.messages {\r\n  flex: 1;\r\n  overflow-y: scroll;\r\n  overflow-x: hidden;\r\n  padding-right: 30px;\r\n}\r\n\r\n.message {\r\n  width: 100%;\r\n  height: auto;\r\n  margin-top: 3px;\r\n  clear: both;\r\n  height: 40px;\r\n  width: 100%;\r\n  position: relative;\r\n}\r\n\r\n.message i {\r\n  position: absolute;\r\n  right: -20px;\r\n  bottom: 12px;\r\n  font-size: 12px\r\n}\r\n\r\n.message-body {\r\n  background-color: #e8e8e8;\r\n  padding: 10px;\r\n}\r\n\r\n.message-body.sent {\r\n  float: right;\r\n  border-top-left-radius: 10px;\r\n  border-bottom-left-radius: 10px;\r\n  background-color: #448aff;\r\n  color: white;\r\n}\r\n\r\n.message-body.received {\r\n  float: left;\r\n  border-top-right-radius: 10px;\r\n  border-bottom-right-radius: 10px;\r\n}\r\n\r\n\r\n.styled-scrollbar::-webkit-scrollbar-track\r\n{\r\n\tborder-radius: 10px;\r\n\tbackground-color: #F5F5F5;\r\n}\r\n\r\n.styled-scrollbar::-webkit-scrollbar\r\n{\r\n\twidth: 12px;\r\n\tbackground-color: #F5F5F5;\r\n}\r\n\r\n.styled-scrollbar::-webkit-scrollbar-thumb\r\n{\r\n\tborder-radius: 10px;\r\n\tbackground-color: #555;\r\n}\r\n\r\n.inputs {\r\n  display: flex;\r\n  flex-direction: row;\r\n  align-items: center;\r\n}\r\n\r\n.send-button {\r\n  margin-left: 10px;\r\n  background-color: #7b1fa2;\r\n  color: white;\r\n  border-radius: 50%;\r\n  border: none;\r\n  height: 32px;\r\n  width: 32px;\r\n  cursor: pointer;\r\n}\r\n", ""]);
 
 // exports
 

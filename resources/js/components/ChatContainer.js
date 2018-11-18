@@ -12,7 +12,7 @@ class ChatContainer extends Component {
     componentDidMount() {
       // Maybe add a timeline on redux
       this.props.onFetchUser().then(() => {
-        TweenMax.from('.chat-container', 0.9, {
+        TweenMax.from('.chat-container', 1.2, {
           height: 0,
           opacity: 0,
           ease: SlowMo.easeIn

@@ -48,6 +48,7 @@ class Chat extends Component {
       this.props.onSendMessage(this.state.id);
       this.props.onAddLocalMsgToConversation(this.props.message);
 
+      this.props.onFetchConversationWith(this.state.id);
       // Not the best implementation
       this.refs.input.value = '';
       this.props.onUpdateMessage('');
