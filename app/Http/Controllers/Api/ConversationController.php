@@ -31,10 +31,13 @@ class ConversationController extends Controller
       // Fetch conversation
       $conversation = new Conversation(Auth::user(), $user);
 
-      return $conversation->getMessages();
+      return $conversation->messages(40);
     }
 
     public function store(Request $request, User $user) {
+
+      // Needs better validation
+      if(!$request->message) return;
 
       $message = [
         'sender_id' => Auth::id(),

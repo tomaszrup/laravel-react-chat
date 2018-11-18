@@ -16,9 +16,9 @@ class Conversation {
     $this->recipient = $recipient;
   }
 
-  public function getMessages() {
-    $sent = $this->sender->sentMessages()->to($this->recipient)->get();
-    $received = $this->sender->receivedMessages()->from($this->recipient)->get();
+  public function messages($amount) {
+    $sent = $this->sender->sentMessages()->to($this->recipient)->orderBy('created_at', 'desc')->take($amount / 2)->get();
+    $received = $this->sender->receivedMessages()->from($this->recipient)->orderBy('created_at', 'desc')->take($amount / 2)->get();
 
     $messages = $sent->merge($received)->sortByDesc('created_at');
 

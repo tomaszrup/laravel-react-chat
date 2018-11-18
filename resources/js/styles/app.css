@@ -1,0 +1,124 @@
+body {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100vh;
+}
+
+.top-bar {
+  background-color: #7b1fa2;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 120px;
+  z-index: 0;
+}
+
+.chat-container {
+  z-index: 1;
+  height: 85vh;
+  width: 50vw;
+  background-color: white;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  min-width: 700px;
+}
+
+.left-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column
+}
+
+.right-section {
+  flex: 3;
+}
+
+.user-panel {
+  flex: 1;
+  background-color: #d8d8d8;
+}
+
+.friend-list {
+  background-color: #e8e8e8;
+  padding: 30px;
+  flex: 9;
+}
+
+.chat {
+  flex: 3;
+  padding: 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.message {
+  width: 100%;
+  height: auto;
+  margin-top: 5px;
+  clear: both;
+}
+
+.message-body {
+  background-color: #e8e8e8;
+  padding: 10px;
+}
+
+.message-body.sent {
+  float: right;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.message-body.received {
+  float: left;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+
+.styled-scrollbar::-webkit-scrollbar-track
+{
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.styled-scrollbar::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.styled-scrollbar::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: #555;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.send-button {
+  margin-left: 10px;
+  background-color: #7b1fa2;
+  color: white;
+  border-radius: 50%;
+  border: none;
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+}

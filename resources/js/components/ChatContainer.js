@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { connect } from 'react-redux';
 import { fetchUser } from './../actions/userActions';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import ReactDOM from 'react-dom';
 
+import FriendList from './FriendList';
+import UserPanel from './UserPanel';
 import Chat from './Chat';
 
 
@@ -13,9 +15,15 @@ class ChatContainer extends Component {
     render() {
       if(this.props.user.id)
         return (
-          <React.Fragment>
-            <Chat />
-          </React.Fragment>
+          <div className="chat-container z-depth-1">
+            <div className="left-section">
+              <UserPanel />
+              <FriendList />
+            </div>
+            <div className="right-section">
+              <Chat />
+            </div>
+          </div>
         );
       else
         return null;
