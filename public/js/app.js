@@ -54920,7 +54920,8 @@ var Chat = function (_Component) {
 
     _this.state = {
       id: _this.props.user.id === 1 ? 2 : 1,
-      timeline: new TimelineMax()
+      timeline: new TimelineMax(),
+      notification: new Audio('./../sounds/notification.mp3')
     };
     return _this;
   }
@@ -54936,7 +54937,7 @@ var Chat = function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      this.props.onFetchConversationWith(this.state.id).then(function (response) {
+      this.props.onFetchConversationWith(this.state.id).then(function () {
         _this2.state.timeline.staggerFrom('.messages .message', 1, {
           opacity: 0,
           y: 50,
@@ -54945,7 +54946,9 @@ var Chat = function (_Component) {
       });
 
       Echo.private('message-to.' + this.props.user.id).listen('MessageSent', function (e) {
-        _this2.props.onFetchConversationWith(_this2.state.id);
+        _this2.props.onFetchConversationWith(_this2.state.id).then(function () {
+          _this2.state.notification.play();
+        });
       });
     }
   }, {

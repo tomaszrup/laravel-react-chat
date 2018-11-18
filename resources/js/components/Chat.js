@@ -15,7 +15,8 @@ class Chat extends Component {
 
       this.state = {
         id: this.props.user.id === 1 ? 2 : 1,
-        timeline: new TimelineMax
+        timeline: new TimelineMax,
+        notification: new Audio('./../sounds/notification.mp3')
       }
     }
     scrollToBottom() {
@@ -23,7 +24,7 @@ class Chat extends Component {
       div.scrollTop = div.scrollHeight * 2;
     }
     componentDidMount() {
-      this.props.onFetchConversationWith(this.state.id).then(response => {
+      this.props.onFetchConversationWith(this.state.id).then(() => {
         this.state.timeline.staggerFrom('.messages .message', 1, {
           opacity: 0,
           y: 50,
@@ -33,7 +34,9 @@ class Chat extends Component {
 
       Echo.private(`message-to.${this.props.user.id}`)
         .listen('MessageSent', (e) => {
-            this.props.onFetchConversationWith(this.state.id);
+            this.props.onFetchConversationWith(this.state.id).then(() => {
+              this.state.notification.play();
+            });
         });
     }
     updateMessage(e) {
