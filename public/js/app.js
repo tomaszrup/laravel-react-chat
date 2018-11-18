@@ -53139,7 +53139,14 @@ var ChatContainer = function (_Component) {
   _createClass(ChatContainer, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.props.onFetchUser();
+      // Maybe add a timeline on redux
+      this.props.onFetchUser().then(function () {
+        TweenMax.from('.chat-container', 0.9, {
+          height: 0,
+          opacity: 0,
+          ease: SlowMo.easeIn
+        });
+      });
     }
   }, {
     key: 'render',
@@ -53182,20 +53189,23 @@ var mapActionsToProps = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = fetchUser;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return fetchUser; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants__ = __webpack_require__(3);
 
 
-function fetchUser() {
+var fetchUser = function fetchUser() {
   return function (dispatch) {
-    return axios.get('/api/user').then(function (response) {
-      return dispatch({
-        type: __WEBPACK_IMPORTED_MODULE_0__constants__["c" /* FETCH_USER */],
-        payload: response.data
+    return new Promise(function (resolve, reject) {
+      axios.get('/api/user').then(function (response) {
+        dispatch({
+          type: __WEBPACK_IMPORTED_MODULE_0__constants__["c" /* FETCH_USER */],
+          payload: response.data
+        });
+        resolve();
       });
     });
   };
-}
+};
 
 /***/ }),
 /* 61 */
@@ -54927,9 +54937,9 @@ var Chat = function (_Component) {
       var _this2 = this;
 
       this.props.onFetchConversationWith(this.state.id).then(function (response) {
-        _this2.state.timeline.staggerFrom('.messages .message', 0.5, {
+        _this2.state.timeline.staggerFrom('.messages .message', 1, {
           opacity: 0,
-          y: 30,
+          y: 50,
           ease: Power4.easeInOut
         }, -0.03);
       });
@@ -55022,7 +55032,6 @@ var mapActionsToProps = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constants__ = __webpack_require__(3);
 
 
-// In case componentDidUpdate will not be good, if it is then this doesnt have to be a promise
 var fetchConversationWith = function fetchConversationWith(id) {
   return function (dispatch) {
     return new Promise(function (resolve, reject) {
@@ -55103,6 +55112,7 @@ var Message = function (_Component) {
     key: 'render',
     value: function render() {
       var className = 'message-body ' + (this.props.data.sender_id === this.props.user.id || !this.props.data.sender_id ? 'sent' : 'received');
+      //let isSent = this.props.data.sender_id ? '' : (<i style={{float: 'right'}} className="fa fa-paper-plane-o" aria-hidden="true"></i>);
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'message' },

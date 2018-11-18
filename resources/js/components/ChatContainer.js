@@ -10,7 +10,14 @@ import Chat from './Chat';
 
 class ChatContainer extends Component {
     componentDidMount() {
-      this.props.onFetchUser();
+      // Maybe add a timeline on redux
+      this.props.onFetchUser().then(() => {
+        TweenMax.from('.chat-container', 0.9, {
+          height: 0,
+          opacity: 0,
+          ease: SlowMo.easeIn
+        });
+      });
     }
     render() {
       if(this.props.user.id)

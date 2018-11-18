@@ -24,9 +24,9 @@ class Chat extends Component {
     }
     componentDidMount() {
       this.props.onFetchConversationWith(this.state.id).then(response => {
-        this.state.timeline.staggerFrom('.messages .message', 0.5, {
+        this.state.timeline.staggerFrom('.messages .message', 1, {
           opacity: 0,
-          y: 30,
+          y: 50,
           ease: Power4.easeInOut
         }, -0.03);
       });
