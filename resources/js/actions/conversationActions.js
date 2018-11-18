@@ -1,4 +1,4 @@
-import { FETCH_CONVERSATION_WITH } from './constants';
+import { FETCH_CONVERSATION_WITH, ADD_LOCAL_MSG_TO_CONVERSATION } from './constants';
 
 export function fetchConversationWith(id) {
   return function(dispatch) {
@@ -8,5 +8,11 @@ export function fetchConversationWith(id) {
         payload: response.data
       })
     );
+  }
+}
+export function addLocalMsgToConversation(message) {
+  return {
+    type: ADD_LOCAL_MSG_TO_CONVERSATION,
+    payload: message
   }
 }

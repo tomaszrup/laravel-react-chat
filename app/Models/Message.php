@@ -10,7 +10,7 @@ class Message extends Model
     protected $guarded = ['id'];
 
     function scopeTo($query, User $to) {
-      return $query->where('recipient_id', $user->id);
+      return $query->where('recipient_id', $to->id);
     }
 
     function scopeFrom($query, User $from) {

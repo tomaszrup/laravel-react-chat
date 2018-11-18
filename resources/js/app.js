@@ -2,30 +2,24 @@ require('./bootstrap');
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
-import Chat from './components/Chat';
+import ChatContainer from './components/ChatContainer';
 import { Provider } from 'react-redux';
 import store from './store';
-import { fetchUser } from './actions/userActions';
 
-export default class App extends Component {
-    componentDidMount() {
-      store.dispatch(fetchUser());
-    }
+class App extends Component {
     render() {
-        if(store.getState().user)
           return (
             <Provider store={store}>
               <div className="wrapper">
-                <Chat />
+                <ChatContainer />
               </div>
             </Provider>
           );
-        else
-          return null;
     }
 }
 
 if (document.getElementById('app')) {
     ReactDOM.render(<App />, document.getElementById('app'));
 }
+
+export default App;

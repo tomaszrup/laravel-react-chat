@@ -9,19 +9,21 @@ class Conversation {
   protected $recipient;
 
   public function __construct(User $sender, User $recipient) {
-    if($recipient === $sender)
+    if($recipient->id === $sender->id)
       throw new \Exception("Sender and recipient can't be the same person", 1);
 
     $this->sender = $sender;
     $this->recipient = $recipient;
   }
 
-  public function getMessage() {
-    $sent = $sender->sentMessages()->to($recipient)->get();
-    $received = $sender->receivedMessages()->from($recipient)->get();
-    $messages = $sent->merge($received)->sortBy('created_at', 'desc');
+  public function getMessages() {
+    $sent = $this->sender->sentMessages()->to($this->recipient)->get();
+    $received = $this->sender->receivedMessages()->from($this->recipient)->get();
 
-    return $messages;
+    $messages = $sent->merge($received)->sortByDesc('created_at');
+
+    // needs a fix
+    return array_reverse($messages->values()->toArray());
   }
 
 }
