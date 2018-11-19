@@ -3,29 +3,54 @@ import ReactDOM from 'react-dom';
 
 import { fetchConversationWith, addLocalMsgToConversation } from './../actions/conversationActions';
 import { setMessage, sendMessageTo } from './../actions/messageActions';
+import { SET_ACTIVE_USER_ID } from './../actions/constants';
 import { connect } from 'react-redux';
+import EventBus from 'eventing-bus';
 import Message from './Message';
+
+// this component might be too big
 
 class Chat extends Component {
     constructor(props) {
       super(props);
 
-      this.updateMessage = this.updateMessage.bind(this);
-      this.sendMessage = this.sendMessage.bind(this);
-
       this.state = {
-        id: this.props.user.id === 1 ? 2 : 1,
-        timeline: new TimelineMax,
+        previousId: 0,
+        tween: new TimelineMax,
         notification: new Audio('./../sounds/notification.mp3')
       }
+
+      this.updateMessage = this.updateMessage.bind(this);
+      this.sendMessage = this.sendMessage.bind(this);
+      this.startConversation = this.startConversation.bind(this);
+    }
+    componentDidMount() {
+      EventBus.on(SET_ACTIVE_USER_ID, this.startConversation);
+
+      /*
+      if(this.props.activeUserId) {
+        this.startConversation();
+      }
+      */
+    }
+    componentDidUpdate(props) {
+      this.scrollToBottom();
     }
     scrollToBottom() {
       let div = document.querySelector(".messages");
       div.scrollTop = div.scrollHeight * 2;
     }
-    componentDidMount() {
-      this.props.onFetchConversationWith(this.state.id).then(() => {
-        this.state.timeline.staggerFrom('.messages .message', 1, {
+    startConversation(unsubscribe = true) {
+      if(this.previousId === this.props.activeUserId) return;
+
+      if(unsubscribe && this.state.previousId) {
+        Echo.leave(`message-to.${this.state.previousId}`);
+      }
+
+      this.previousId = this.props.activeUserId;
+
+      this.props.onFetchConversationWith(this.props.activeUserId).then(() => {
+        this.state.tween.staggerFrom('.messages .message', 1, {
           opacity: 0,
           y: 50,
           ease: Power4.easeInOut
@@ -34,24 +59,22 @@ class Chat extends Component {
 
       Echo.private(`message-to.${this.props.user.id}`)
         .listen('MessageSent', (e) => {
-            this.props.onFetchConversationWith(this.state.id).then(() => {
-              this.state.notification.play();
-            });
+            if(!document.hasFocus()) this.state.notification.play();
+
+            if(e.message.sender_id === this.props.activeUserId)
+              this.props.onFetchConversationWith(this.props.activeUserId);
         });
     }
     updateMessage(e) {
       this.props.onUpdateMessage(e.target.value);
     }
-    componentDidUpdate(props) {
-      this.scrollToBottom();
-    }
     sendMessage() {
       if(!this.props.message) return;
 
-      this.props.onSendMessage(this.state.id);
+      this.props.onSendMessage(this.props.activeUserId);
       this.props.onAddLocalMsgToConversation(this.props.message);
 
-      this.props.onFetchConversationWith(this.state.id);
+      this.props.onFetchConversationWith(this.props.activeUserId);
       // Not the best implementation
       this.refs.input.value = '';
       this.props.onUpdateMessage('');
@@ -81,7 +104,8 @@ class Chat extends Component {
 const mapStateToProps = state => ({
   conversation: state.conversation,
   user: state.user,
-  message: state.message
+  message: state.message,
+  activeUserId: state.activeUserId
 });
 
 const mapActionsToProps = {

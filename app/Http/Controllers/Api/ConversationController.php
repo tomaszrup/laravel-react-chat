@@ -36,8 +36,12 @@ class ConversationController extends Controller
 
     public function store(Request $request, User $user) {
 
-      // Needs better validation
-      if(!$request->message) return;
+      // Needs api base class
+      if(!$user) return;
+
+      $request->validate([
+        'message' => ['required']
+      ]);
 
       $message = [
         'sender_id' => Auth::id(),

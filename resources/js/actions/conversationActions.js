@@ -1,4 +1,4 @@
-import { FETCH_CONVERSATION_WITH, ADD_LOCAL_MSG_TO_CONVERSATION } from './constants';
+import { FETCH_CONVERSATION_WITH, ADD_LOCAL_MSG_TO_CONVERSATION, SET_ACTIVE_USER_ID } from './constants';
 
 export const fetchConversationWith = (id) => (dispatch) =>
   new Promise(function(resolve, reject) {
@@ -16,4 +16,14 @@ export function addLocalMsgToConversation(message) {
     type: ADD_LOCAL_MSG_TO_CONVERSATION,
     payload: message
   }
+}
+
+
+export const setActiveUserId = id => dispatch => {
+  dispatch({
+    type: SET_ACTIVE_USER_ID,
+    payload: id
+  });
+
+  return Promise.resolve();
 }

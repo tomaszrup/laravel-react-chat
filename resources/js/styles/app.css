@@ -20,7 +20,7 @@ body {
 .chat-container {
   z-index: 1;
   height: 85vh;
-  width: 50vw;
+  width: 60vw;
   background-color: white;
   position: relative;
   display: flex;
@@ -31,22 +31,18 @@ body {
 .left-section {
   flex: 1;
   display: flex;
-  flex-direction: column
+  flex-direction: column;
+  background-color: #e8e8e8;
 }
 
 .right-section {
-  flex: 3;
-}
-
-.user-panel {
-  flex: 1;
-  background-color: #d8d8d8;
+  width: 70%;
 }
 
 .friend-list {
   background-color: #e8e8e8;
   padding: 30px;
-  flex: 9;
+  flex: 12;
 }
 
 .chat {
@@ -62,6 +58,7 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
   padding-right: 30px;
+  max-width: 100%;
 }
 
 .message {
@@ -72,6 +69,7 @@ body {
   height: 40px;
   width: 100%;
   position: relative;
+  word-break: break-all;
 }
 
 .message i {
@@ -134,4 +132,49 @@ body {
   height: 32px;
   width: 32px;
   cursor: pointer;
+}
+
+.user-panel {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  padding-left: 10px;
+  padding-right: 10px;
+  justify-content: center;
+  align-items: center;
+  background-color: #d0d0d0;
+}
+
+
+.user-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  width: 42px;
+  height: 42px;
+  background-color: #bbb;
+  border-radius: 50%;
+}
+
+.user-avatar img {
+  opacity: 0.9;
+  height: 42px;
+}
+
+.user-info {
+  flex: 9;
+  margin-left: 0px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.user-name {
+  color: black;
+}
+
+.user-email {
+  font-size: 0.8em;
+  opacity: 0.8;
 }

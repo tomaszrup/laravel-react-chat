@@ -1,4 +1,5 @@
 import { fetchUser } from './../actions/userActions';
+import { fetchFriends } from './../actions/friendsActions';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
@@ -9,18 +10,24 @@ import Chat from './Chat';
 
 
 class ChatContainer extends Component {
+    constructor() {
+      super();
+      this.state = {
+        timeline: new TimelineMax
+      };
+    }
     componentDidMount() {
-      // Maybe add a timeline on redux
+      this.props.onFetchFriends();
       this.props.onFetchUser().then(() => {
-        TweenMax.from('.chat-container', 1.2, {
+        this.state.timeline.from('.chat-container', 0.8, {
           height: 0,
           opacity: 0,
-          ease: SlowMo.easeIn
+          ease: Power4.easeOut
         });
       });
     }
     render() {
-      if(this.props.user.id)
+      if(this.props.user.id && this.props.friends.length)
         return (
           <div className="chat-container z-depth-1">
             <div className="left-section">
@@ -38,11 +45,13 @@ class ChatContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  friends: state.friends
 });
 
 const mapActionsToProps = {
-  onFetchUser: fetchUser
+  onFetchUser: fetchUser,
+  onFetchFriends: fetchFriends
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(ChatContainer);
