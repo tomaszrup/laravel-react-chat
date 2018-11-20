@@ -24,9 +24,16 @@ Route::any('/home/{query}',
   ->where('query', '.*');
 
 Route::prefix('api')->group(function() {
+  // This routing can be better
+  Route::get('/conversation/last', 'Api\ConversationController@last');
+  Route::get('/conversation/last/{user}', 'Api\ConversationController@last');
+
   Route::get('/conversation/{user}', 'Api\ConversationController@index');
   Route::post('/conversation/{user}', 'Api\ConversationController@store');
   Route::get('/friends', 'Api\FriendsController@index');
+
+
+
   Route::get('/user', function() {
     return Auth::user();
   });

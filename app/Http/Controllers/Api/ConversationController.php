@@ -53,4 +53,19 @@ class ConversationController extends Controller
 
       event(new MessageSent($message));
     }
+
+    public function last(User $user = null) {
+      if($user) {
+          $conversation = new Conversation(Auth::user(), $user);
+          return $conversation->lastMessage();
+      }
+
+      //Need to implement friends
+      $messages = User::where('id', '!=', Auth::id())->get()->mapWithKeys(function($user) {
+        $conversation = new Conversation(Auth::user(), $user);
+        return [$user->id => $conversation->lastMessage()];
+      });
+
+      return $messages;
+    }
 }

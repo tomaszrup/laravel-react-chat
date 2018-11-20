@@ -22,8 +22,13 @@ class Conversation {
 
     $messages = $sent->merge($received)->sortByDesc('created_at');
 
-    // needs a fix
     return array_reverse($messages->values()->toArray());
+  }
+
+  public function lastMessage() {
+    $messages = $this->messages(2);
+
+    return $messages[count($messages) - 1];
   }
 
 }

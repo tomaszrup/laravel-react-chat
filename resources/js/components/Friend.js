@@ -22,6 +22,7 @@ class Friend extends Component {
             <div className="friend-card" onClick={this.setActiveUser}>
               <div className="friend-name">
                 {this.props.name}
+                {this.props.lastMessage.body}
               </div>
             </div>
         );

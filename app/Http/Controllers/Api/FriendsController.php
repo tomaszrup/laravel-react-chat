@@ -26,7 +26,8 @@ class FriendsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(User $user) {
-      // Fetch conversation
+      
+      // Fetch friends
       $friends = User::where('id', "!=", Auth::id())->get();
 
       return $friends;
