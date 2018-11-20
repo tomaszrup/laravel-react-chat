@@ -28,7 +28,7 @@ class Conversation {
   public function lastMessage() {
     $messages = $this->messages(2);
 
-    return $messages[count($messages) - 1];
+    return (count($messages) ? $messages[count($messages) - 1] : []);
   }
 
 }

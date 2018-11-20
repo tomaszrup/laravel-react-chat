@@ -6,6 +6,7 @@ import { SET_ACTIVE_USER_ID, SEND_MESSAGE_TO } from './../actions/constants';
 import { fetchConversationWith, fetchLastMessages, fetchLastMessageWith } from './../actions/conversationActions';
 import { fetchFriends } from './../actions/friendsActions';
 import { fetchUser } from './../actions/userActions';
+import { TimelineMax, Power4 } from "gsap/TweenMax";
 
 import FriendList from './FriendList';
 import UserPanel from './UserPanel';
@@ -13,18 +14,22 @@ import EventBus from 'eventing-bus';
 import Chat from './Chat';
 
 
+import * as _ from 'lodash';
+
+
 class ChatContainer extends Component {
     constructor() {
       super();
       this.state = {
+        notification: new Audio('/sounds/notification.mp3'),
         timeline: new TimelineMax,
-        notification: new Audio('/sounds/notification.mp3')
+        alreadyOpened: {}
       };
 
       this.startConversation = this.startConversation.bind(this);
     }
     componentDidMount() {
-      EventBus.on(SET_ACTIVE_USER_ID, this.startConversation);
+      EventBus.on(SET_ACTIVE_USER_ID, _.debounce(this.startConversation, 100));
       EventBus.on(SEND_MESSAGE_TO, () => {this.props.onFetchConversationWith(this.props.activeUserId)} );
 
       this.props.onFetchFriends();
@@ -51,11 +56,19 @@ class ChatContainer extends Component {
       });
     }
     startConversation() {
+      // Add some conversation caching, to prevent multiple requests in a short time + make app faster
       this.props.onFetchConversationWith(this.props.activeUserId).then(() => {
-        this.state.timeline.staggerFrom('.messages .message', 0.5, {
+        if(this.state.alreadyOpened[this.props.activeUserId]) return;
+
+        this.state.timeline.staggerFrom('.messages .message', 0.3, {
           opacity: 0,
-          y: 30
+          y: 30,
+          ease: Power4.easeInOut
         }, -0.03);
+
+        let newAlreadyOpened = this.state.alreadyOpened;
+        newAlreadyOpened[this.props.activeUserId] = true;
+        this.setState({ alreadyOpened: newAlreadyOpened });
       });
     }
     render() {

@@ -4,13 +4,10 @@ import ReactDOM from 'react-dom';
 import Friend from './Friend';
 
 class FriendList extends Component {
-    componentDidUpdate() {
-      console.log("asas");
-    }
     render() {
         let friends = this.props.friends.map((friend, index) => {
             return (
-              <Friend name={friend.name} lastMessage={this.props.lastMessages[friend.id]} id={friend.id} key={index}/>
+              <Friend name={friend.name} active={this.props.activeUserId === friend.id} lastMessage={this.props.lastMessages[friend.id]} id={friend.id} key={index}/>
             )
         });
 
@@ -24,7 +21,8 @@ class FriendList extends Component {
 
 const mapStateToProps = state => ({
   friends: state.friends,
-  lastMessages: state.lastMessages
+  lastMessages: state.lastMessages,
+  activeUserId: state.activeUserId
 });
 
 

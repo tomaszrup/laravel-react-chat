@@ -12,7 +12,7 @@ class App extends Component {
     render() {
           return (
             <Provider store={store}>
-              <div className="container">
+              <div>
                 <div className="top-bar"></div>
                 <ChatContainer />
               </div>

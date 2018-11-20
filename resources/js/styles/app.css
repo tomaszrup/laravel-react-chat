@@ -19,8 +19,8 @@ body {
 
 .chat-container {
   z-index: 1;
-  height: 85vh;
-  width: 60vw;
+  height: 90vh;
+  width: 70vw;
   background-color: white;
   position: relative;
   display: flex;
@@ -33,16 +33,65 @@ body {
   display: flex;
   flex-direction: column;
   background-color: #e8e8e8;
+  overflow: hidden;
 }
 
 .right-section {
-  width: 70%;
+  width: 72%;
 }
 
 .friend-list {
   background-color: #e8e8e8;
-  padding: 30px;
   flex: 12;
+}
+
+.friend-card {
+  cursor: pointer;
+  padding: 15px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: #e1e1e1;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  transition: .1s all ease-in-out;
+  display: flex;
+}
+
+.friend-card.active, .friend-card:hover {
+  background-color: #d5d5d5;
+}
+
+.friend-avatar {
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 48px;
+  width: 48px;
+  margin-right: 15px;
+}
+
+.friend-text {
+  flex: 1;
+}
+
+.friend-card:first-child {
+  border-top: none;
+}
+
+.friend-name {
+  color: #333;
+  font-size: 1.3em;
+}
+
+.friend-last-message .time {
+  color: orangered;
+  font-size: 0.7em;
+  float: right
+}
+
+.friend-last-message {
+  font-size: 0.9em;
+  opacity: 0.8;
+  max-width: 100%;
+  word-break: break-all;
 }
 
 .chat {
@@ -177,4 +226,15 @@ body {
 .user-email {
   font-size: 0.8em;
   opacity: 0.8;
+}
+
+.welcome {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-weight: bold;
+  opacity: 0.5;
 }

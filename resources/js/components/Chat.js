@@ -8,6 +8,7 @@ import { SET_ACTIVE_USER_ID, SEND_MESSAGE_TO } from './../actions/constants';
 
 import EventBus from 'eventing-bus';
 import Message from './Message';
+import Welcome from './Welcome';
 
 
 class Chat extends Component {
@@ -43,20 +44,27 @@ class Chat extends Component {
           return (
             <Message data={message} key={index}></Message>
           )
-        })
-        return (
-          <div className="chat">
-            <div className="messages styled-scrollbar">
-              { messages }
+        });
+
+        if(this.props.activeUserId)
+          return (
+            <div className="chat">
+              <div className="messages styled-scrollbar">
+                { messages }
+              </div>
+              <div className="inputs">
+                <input ref="input" onInput={this.updateMessage} onKeyPress={e => {if(e.key === 'Enter') this.sendMessage();} } type="text"/>
+                <button className="send-button" onClick={this.sendMessage}>
+                  <i className="fa fa-paper-plane" aria-hidden="true"></i>
+                </button>
+              </div>
             </div>
-            <div className="inputs">
-              <input ref="input" onInput={this.updateMessage} onKeyPress={e => {if(e.key === 'Enter') this.sendMessage();} } type="text"/>
-              <button className="send-button" onClick={this.sendMessage}>
-                <i className="fa fa-paper-plane" aria-hidden="true"></i>
-              </button>
-            </div>
-          </div>
-        );
+          );
+        else
+          return (
+            <Welcome />
+          )
+
     }
 }
 

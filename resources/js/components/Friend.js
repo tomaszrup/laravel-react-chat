@@ -18,11 +18,20 @@ class Friend extends Component {
       });
     }
     render() {
+        let classNames = 'friend-card' + (this.props.active ? ' active' : '');
         return (
-            <div className="friend-card" onClick={this.setActiveUser}>
-              <div className="friend-name">
-                {this.props.name}
-                {this.props.lastMessage.body}
+            <div className={classNames} onClick={this.setActiveUser}>
+              <div className="friend-avatar">
+              </div>
+              <div className="friend-text">
+                <div className="friend-name">
+                  {this.props.name} <br/>
+                </div>
+                <div className="friend-last-message">
+                  <span className="time"> { this.props.lastMessage ? (this.props.lastMessage.created_at ? this.props.lastMessage.created_at : 'sending...') : ''} </span>
+                  {this.props.lastMessage ? this.props.lastMessage.body : ''}
+
+                </div>
               </div>
             </div>
         );
