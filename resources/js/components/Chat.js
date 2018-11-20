@@ -10,7 +10,6 @@ import EventBus from 'eventing-bus';
 import Message from './Message';
 import Welcome from './Welcome';
 
-
 class Chat extends Component {
     constructor(props) {
       super(props);
@@ -18,12 +17,15 @@ class Chat extends Component {
       this.updateMessage = this.updateMessage.bind(this);
       this.sendMessage = this.sendMessage.bind(this);
     }
+    componentDidMount() {
+      this.scrollToBottom();
+    }
     componentDidUpdate(props) {
       this.scrollToBottom();
     }
     scrollToBottom() {
       let div = document.querySelector(".messages");
-      div.scrollTop = div.scrollHeight * 2;
+      if(div) div.scrollTop = div.scrollHeight * 2;
     }
     updateMessage(e) {
       this.props.onUpdateMessage(e.target.value);

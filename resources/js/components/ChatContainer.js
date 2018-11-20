@@ -11,6 +11,7 @@ import { TimelineMax, Power4 } from "gsap/TweenMax";
 import FriendList from './FriendList';
 import UserPanel from './UserPanel';
 import EventBus from 'eventing-bus';
+import Loader from './Loader';
 import Chat from './Chat';
 
 
@@ -22,19 +23,25 @@ class ChatContainer extends Component {
       super();
       this.state = {
         notification: new Audio('/sounds/notification.mp3'),
+        loadingConversation: false,
         timeline: new TimelineMax,
-        alreadyOpened: {}
+        alreadyOpened: {},
       };
 
       this.startConversation = this.startConversation.bind(this);
     }
     componentDidMount() {
-      EventBus.on(SET_ACTIVE_USER_ID, _.debounce(this.startConversation, 100));
+      EventBus.on(SET_ACTIVE_USER_ID, this.startConversation);
       EventBus.on(SEND_MESSAGE_TO, () => {this.props.onFetchConversationWith(this.props.activeUserId)} );
+
+      this.state.timeline.from('.chat-container', 1.3, {
+        height: 0,
+        opacity: 0,
+        ease: Power4.easeOut
+      });
 
       this.props.onFetchFriends();
       this.props.onFetchLastMessages();
-
       this.props.onFetchUser().then(() => {
         Echo.private(`message-to.${this.props.user.id}`)
           .listen('MessageSent', (e) => {
@@ -47,20 +54,17 @@ class ChatContainer extends Component {
 
             if(!document.hasFocus()) this.state.notification.play();
         });
-
-        this.state.timeline.from('.chat-container', 0.8, {
-          height: 0,
-          opacity: 0,
-          ease: Power4.easeOut
-        });
       });
     }
     startConversation() {
       // Add some conversation caching, to prevent multiple requests in a short time + make app faster
-      this.props.onFetchConversationWith(this.props.activeUserId).then(() => {
-        if(this.state.alreadyOpened[this.props.activeUserId]) return;
+      this.setState({loadingConversation: true});
 
-        this.state.timeline.staggerFrom('.messages .message', 0.3, {
+      this.props.onFetchConversationWith(this.props.activeUserId).then(() => {
+        this.setState({loadingConversation: false});
+
+        if(this.state.alreadyOpened[this.props.activeUserId]) return;
+        this.state.timeline.staggerFrom('.messages .message', 0.8, {
           opacity: 0,
           y: 30,
           ease: Power4.easeInOut
@@ -80,12 +84,16 @@ class ChatContainer extends Component {
               <FriendList />
             </div>
             <div className="right-section">
-              <Chat />
+              {!this.state.loadingConversation ? (<Chat />) : (<Loader />)}
             </div>
           </div>
         );
       else
-        return null;
+        return (
+          <div className="chat-container z-depth-1">
+            <Loader />
+          </div>
+        )
     }
 }
 
