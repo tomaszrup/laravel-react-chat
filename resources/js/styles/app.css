@@ -191,7 +191,8 @@ body {
   padding-right: 10px;
   justify-content: center;
   align-items: center;
-  background-color: #d0d0d0;
+  background-color: #333;
+  color: white;
 }
 
 
@@ -217,10 +218,6 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
-}
-
-.user-name {
-  color: black;
 }
 
 .user-email {

@@ -9,8 +9,8 @@ import { fetchUser } from './../actions/userActions';
 import { TimelineMax, Power4 } from "gsap/TweenMax";
 
 import FriendList from './FriendList';
+import EventBus from './../EventBus';
 import UserPanel from './UserPanel';
-import EventBus from 'eventing-bus';
 import Loader from './Loader';
 import Chat from './Chat';
 
@@ -64,9 +64,9 @@ class ChatContainer extends Component {
         this.setState({loadingConversation: false});
 
         if(this.state.alreadyOpened[this.props.activeUserId]) return;
-        this.state.timeline.staggerFrom('.messages .message', 0.8, {
+        this.state.timeline.staggerFrom('.messages .message', 0.6, {
           opacity: 0,
-          y: 30,
+          y: -30,
           ease: Power4.easeInOut
         }, -0.03);
 

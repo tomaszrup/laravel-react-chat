@@ -8,7 +8,7 @@ export default class Welcome extends Component {
       TweenMax.from('.welcome', 0.5, {
         opacity: 0,
         ease: Power4.easeInOut,
-        y: 30
+        y: 15
       });
     }
     render() {

@@ -5,7 +5,7 @@ export default function messageReducer(state = '', action) {
     case SET_MESSAGE:
       return action.payload;
     case SEND_MESSAGE_TO:
-      axios.post('/api/conversation/'+action.payload, {
+      axios.post(`/api/conversation/${action.payload}`, {
         message: state
       }).then(response => {
         return state;

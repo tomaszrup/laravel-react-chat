@@ -28,7 +28,6 @@ class ConversationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(User $user) {
-      // Fetch conversation
       $conversation = new Conversation(Auth::user(), $user);
 
       return $conversation->messages(40);

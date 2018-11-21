@@ -8,7 +8,7 @@ import {
 
 export const fetchConversationWith = id => dispatch =>
   new Promise((resolve, reject) => {
-    axios.get('/api/conversation/'+id).then(response => {
+    axios.get(`/api/conversation/${id}`).then(response => {
       dispatch({
         type: FETCH_CONVERSATION_WITH,
         payload: response.data
@@ -26,7 +26,7 @@ export const fetchConversationWith = id => dispatch =>
 
 export const fetchLastMessageWith = id => dispatch =>
   new Promise((resolve, reject) => {
-    axios.get('/api/conversation/last/'+id).then(response => {
+    axios.get(`/api/conversation/last/${id}`).then(response => {
       dispatch({
         type: FETCH_LAST_MESSAGE_WITH,
         payload: {

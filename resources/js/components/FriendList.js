@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
+
 import Friend from './Friend';
 
 class FriendList extends Component {

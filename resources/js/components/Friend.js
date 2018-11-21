@@ -1,9 +1,11 @@
-import { setActiveUserId } from './../actions/conversationActions';
-import { SET_ACTIVE_USER_ID } from './../actions/constants';
+import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import EventBus from 'eventing-bus';
-import ReactDOM from 'react-dom';
+
+import { setActiveUserId } from './../actions/conversationActions';
+import { SET_ACTIVE_USER_ID } from './../actions/constants';
+import EventBus from './../EventBus';
+
 
 
 class Friend extends Component {
@@ -14,7 +16,7 @@ class Friend extends Component {
     }
     setActiveUser() {
       this.props.onSetActiveUserId(this.props.id).then(() => {
-        EventBus.publish(SET_ACTIVE_USER_ID);
+        EventBus.emit(SET_ACTIVE_USER_ID);
       });
     }
     render() {

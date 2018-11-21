@@ -6,7 +6,7 @@ import { addLocalMsgToConversation } from './../actions/conversationActions';
 import { setMessage, sendMessageTo } from './../actions/messageActions';
 import { SET_ACTIVE_USER_ID, SEND_MESSAGE_TO } from './../actions/constants';
 
-import EventBus from 'eventing-bus';
+import EventBus from './../EventBus';
 import Message from './Message';
 import Welcome from './Welcome';
 
@@ -36,7 +36,7 @@ class Chat extends Component {
       this.props.onSendMessage(this.props.activeUserId);
       this.props.onAddLocalMsgToConversation(this.props.message);
 
-      EventBus.publish(SEND_MESSAGE_TO);
+      EventBus.emit(SEND_MESSAGE_TO);
 
       this.refs.input.value = '';
       this.props.onUpdateMessage('');
