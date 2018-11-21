@@ -8,6 +8,7 @@ import { fetchFriends } from './../actions/friendsActions';
 import { fetchUser } from './../actions/userActions';
 import { TimelineMax, Power4 } from "gsap/TweenMax";
 
+import ActiveUserPanel from './ActiveUserPanel';
 import FriendList from './FriendList';
 import EventBus from './../EventBus';
 import UserPanel from './UserPanel';
@@ -84,7 +85,8 @@ class ChatContainer extends Component {
               <FriendList />
             </div>
             <div className="right-section">
-              {!this.state.loadingConversation ? (<Chat />) : (<Loader />)}
+              {this.props.activeUserId ? (<ActiveUserPanel />) : ''}
+              {!this.state.loadingConversation ? (<Chat />) : (<div className="chat"><Loader/></div>)} 
             </div>
           </div>
         );
