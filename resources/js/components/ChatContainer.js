@@ -44,7 +44,7 @@ class ChatContainer extends Component {
       this.props.onFetchFriends();
       this.props.onFetchLastMessages();
       this.props.onFetchUser().then(() => {
-        Echo.private(`message-to.${this.props.user.id}`)
+        Echo.private(`user-channel.${this.props.user.id}`)
           .listen('MessageSent', (e) => {
             let msg = e.message;
 
@@ -54,6 +54,11 @@ class ChatContainer extends Component {
               this.props.onFetchLastMessageWith(msg.sender_id);
 
             if(!document.hasFocus()) this.state.notification.play();
+        });
+
+        Echo.private('global-channel')
+          .listen('UserRegistered', (e) => {
+            this.props.onFetchFriends();
         });
       });
     }

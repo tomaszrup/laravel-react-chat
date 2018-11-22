@@ -32,8 +32,6 @@ Route::prefix('api')->group(function() {
   Route::post('/conversation/{user}', 'Api\ConversationController@store');
   Route::get('/friends', 'Api\FriendsController@index');
 
-
-
   Route::get('/user', function() {
     return Auth::user();
   });

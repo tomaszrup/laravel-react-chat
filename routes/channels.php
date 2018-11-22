@@ -11,10 +11,10 @@
 |
 */
 
-Broadcast::channel('App.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+Broadcast::channel('user-channel.{userId}', function ($user, $userId) {
+    return $user->id == $userId;
 });
 
-Broadcast::channel('message-to.{userId}', function ($user, $userId) {
+Broadcast::channel('global-channel', function ($user) {
     return true;
 });

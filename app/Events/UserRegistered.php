@@ -12,19 +12,18 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 use App\Models\Message;
 
-class MessageSent implements ShouldBroadcast
+class UserRegistered implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $message;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Message $message)
+    public function __construct()
     {
-        $this->message = $message;
+
     }
 
     /**
@@ -34,6 +33,6 @@ class MessageSent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('user-channel.' . $this->message->recipient_id);
+        return new PrivateChannel('global-channel');
     }
 }
