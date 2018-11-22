@@ -55022,6 +55022,7 @@ var fetchConversationWith = function fetchConversationWith(id) {
           type: __WEBPACK_IMPORTED_MODULE_0__constants__["c" /* FETCH_CONVERSATION_WITH */],
           payload: response.data
         });
+        console.log(response.data[response.data.length - 1]);
         dispatch({
           type: __WEBPACK_IMPORTED_MODULE_0__constants__["f" /* FETCH_LAST_MESSAGE_WITH */],
           payload: {
@@ -56903,7 +56904,7 @@ var ChatContainer = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      if (this.props.user.id && this.props.friends.length && Object.keys(this.props.lastMessages).length) return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      if (this.props.user.id) return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'chat-container z-depth-1' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -64170,7 +64171,11 @@ var Friend = function (_Component) {
             { className: 'friend-name' },
             this.props.name,
             ' ',
-            __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('br', null)
+            !this.props.lastMessage || this.props.lastMessage.read_at || this.props.lastMessage.sender_id !== this.props.id ? '' : __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
+              'span',
+              { className: 'new badge', 'data-badge-caption': 'unread' },
+              ' '
+            )
           ),
           __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
             'div',
@@ -64178,9 +64183,7 @@ var Friend = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
               'span',
               { className: 'time' },
-              ' ',
-              this.props.lastMessage ? this.props.lastMessage.created_at ? this.props.lastMessage.created_at : '' : '',
-              ' '
+              this.props.lastMessage ? this.props.lastMessage.created_at : ''
             ),
             this.props.lastMessage ? this.props.lastMessage.body : ''
           )

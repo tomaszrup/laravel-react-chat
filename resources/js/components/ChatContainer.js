@@ -77,7 +77,7 @@ class ChatContainer extends Component {
       });
     }
     render() {
-      if(this.props.user.id && this.props.friends.length && Object.keys(this.props.lastMessages).length)
+      if(this.props.user.id)
         return (
           <div className="chat-container z-depth-1">
             <div className="left-section">

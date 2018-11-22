@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use Carbon\Carbon;
 
 class Message extends Model
 {
@@ -15,5 +16,12 @@ class Message extends Model
 
     function scopeFrom($query, User $from) {
       return $query->where('sender_id', $from->id);
+    }
+
+    function scopeRead($query) {
+      $now = Carbon::now();
+      $copy = $query;
+      $copy->update(["read_at" => $now]);
+      return $query;
     }
 }

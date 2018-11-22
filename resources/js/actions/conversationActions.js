@@ -28,6 +28,7 @@ export const fetchConversationWith = (id, force = false) => (dispatch, getState)
         type: FETCH_CONVERSATION_WITH,
         payload: response.data
       });
+      console.log(response.data[response.data.length - 1]);
       dispatch({
         type: FETCH_LAST_MESSAGE_WITH,
         payload: {

@@ -30,7 +30,7 @@ class ConversationController extends Controller
     public function index(User $user) {
       $conversation = new Conversation(Auth::user(), $user);
 
-      return $conversation->messages(40);
+      return $conversation->messages(40, true);
     }
 
     public function store(Request $request, User $user) {
