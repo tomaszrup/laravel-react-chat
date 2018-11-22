@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+import conversationCacheReducer from './conversationCacheReducer';
 import conversationReducer from './conversationReducer';
 import activeUserIdReducer from './activeUserIdReducer';
 import lastMessagesReducer from './lastMessagesReducer';
@@ -13,5 +14,6 @@ export default combineReducers({
   message: messageReducer,
   friends: friendsReducer,
   activeUserId: activeUserIdReducer,
-  lastMessages: lastMessagesReducer
+  lastMessages: lastMessagesReducer,
+  conversationCache: conversationCacheReducer
 });

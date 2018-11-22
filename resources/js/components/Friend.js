@@ -30,7 +30,7 @@ class Friend extends Component {
                   {this.props.name} <br/>
                 </div>
                 <div className="friend-last-message">
-                  <span className="time"> { this.props.lastMessage ? (this.props.lastMessage.created_at ? this.props.lastMessage.created_at : 'sending...') : ''} </span>
+                  <span className="time"> { this.props.lastMessage ? (this.props.lastMessage.created_at ? this.props.lastMessage.created_at : '') : ''} </span>
                   {this.props.lastMessage ? this.props.lastMessage.body : ''}
 
                 </div>

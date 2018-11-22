@@ -49,7 +49,7 @@ class ChatContainer extends Component {
             let msg = e.message;
 
             if(msg.sender_id === this.props.activeUserId)
-              this.props.onFetchConversationWith(msg.sender_id);
+              this.props.onFetchConversationWith(msg.sender_id, true);
             else
               this.props.onFetchLastMessageWith(msg.sender_id);
 
@@ -86,7 +86,7 @@ class ChatContainer extends Component {
             </div>
             <div className="right-section">
               {this.props.activeUserId ? (<ActiveUserPanel />) : ''}
-              {!this.state.loadingConversation ? (<Chat />) : (<div className="chat"><Loader/></div>)} 
+              {!this.state.loadingConversation ? (<Chat />) : (<div className="chat"><Loader/></div>)}
             </div>
           </div>
         );

@@ -8,7 +8,6 @@ export default function lastMessagesReducer(state = {}, action){
       let newState = {
         ...state
       };
-      
       newState[action.payload.id] = action.payload.message;
       return newState;
     default:
