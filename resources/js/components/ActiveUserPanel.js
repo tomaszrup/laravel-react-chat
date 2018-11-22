@@ -8,7 +8,7 @@ class ActiveUserPanel extends Component {
   render() {
       return (
         <div className="user-panel in-chat">
-          <div className="user-info">
+          <div className="user-info justify-right">
             <div className="user-name">
               {this.props.user.name}
             </div>
