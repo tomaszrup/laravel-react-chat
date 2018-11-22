@@ -110,6 +110,8 @@ body {
   overflow-x: hidden;
   padding-right: 30px;
   max-width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .message {
@@ -117,7 +119,6 @@ body {
   height: auto;
   margin-top: 3px;
   clear: both;
-  height: 40px;
   width: 100%;
   position: relative;
   word-break: break-all;

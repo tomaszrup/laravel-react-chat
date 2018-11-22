@@ -39,7 +39,7 @@ class ConversationController extends Controller
       if(!$user) return;
 
       $request->validate([
-        'message' => ['required']
+        'message' => ['required', 'max:180']
       ]);
 
       $message = [

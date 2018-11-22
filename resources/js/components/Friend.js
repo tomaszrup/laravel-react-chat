@@ -31,10 +31,10 @@ class Friend extends Component {
                                     || this.props.lastMessage.sender_id !== this.props.id ? '' : <span className="new badge" data-badge-caption="unread"> </span>}
                 </div>
                 <div className="friend-last-message">
+                  {this.props.lastMessage ? this.props.lastMessage.body : ''}
                   <span className="time">
                     { this.props.lastMessage ? this.props.lastMessage.created_at : ''}
                   </span>
-                  {this.props.lastMessage ? this.props.lastMessage.body : ''}
                 </div>
               </div>
             </div>

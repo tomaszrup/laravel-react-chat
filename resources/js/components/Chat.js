@@ -55,7 +55,7 @@ class Chat extends Component {
                 { messages }
               </div>
               <div className="inputs">
-                <input ref="input" onInput={this.updateMessage} onKeyPress={e => {if(e.key === 'Enter') this.sendMessage();} } type="text"/>
+                <input ref="input" maxLength="180" onInput={this.updateMessage} onKeyPress={e => {if(e.key === 'Enter') this.sendMessage();} } type="text"/>
                 <button className="send-button" onClick={this.sendMessage}>
                   <i className="fa fa-paper-plane" aria-hidden="true"></i>
                 </button>
