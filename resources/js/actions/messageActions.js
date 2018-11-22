@@ -7,9 +7,13 @@ export function setMessage(message) {
   }
 }
 
-export function sendMessageTo(id) {
-  return {
-    type: SEND_MESSAGE_TO,
-    payload: id
-  }
-}
+
+// this doesn't really have to be an action, move it to component
+export const sendMessageTo = id => (dispatch, getState) =>
+  new Promise((resolve, reject) => {
+    axios.post(`/api/conversation/${id}`, {
+      message: getState().message
+    }).then(response => {
+      resolve();
+    });
+  });

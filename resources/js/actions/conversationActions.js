@@ -28,7 +28,6 @@ export const fetchConversationWith = (id, force = false) => (dispatch, getState)
         type: FETCH_CONVERSATION_WITH,
         payload: response.data
       });
-      console.log(response.data[response.data.length - 1]);
       dispatch({
         type: FETCH_LAST_MESSAGE_WITH,
         payload: {
@@ -65,12 +64,14 @@ export const fetchLastMessages = () => dispatch =>
   });
 
 
-export function addLocalMsgToConversation(message) {
-  return {
-    type: ADD_LOCAL_MSG_TO_CONVERSATION,
-    payload: message
-  }
-}
+export const addLocalMsgToConversation = message => dispatch =>
+  new Promise((resolve, reject) => {
+    dispatch({
+      type: ADD_LOCAL_MSG_TO_CONVERSATION,
+      payload: message
+    });
+    resolve();
+  });
 
 export const setActiveUserId = id => (dispatch, getState) => {
   let conversation = getState().conversation;

@@ -33,13 +33,13 @@ class Chat extends Component {
     sendMessage() {
       if(!this.props.message) return;
 
-      this.props.onSendMessage(this.props.activeUserId);
-      this.props.onAddLocalMsgToConversation(this.props.message);
-
-      EventBus.emit(SEND_MESSAGE_TO);
-
-      this.refs.input.value = '';
-      this.props.onUpdateMessage('');
+      this.props.onAddLocalMsgToConversation(this.props.message).then(() => {
+        this.props.onSendMessage(this.props.activeUserId).then(() => {
+          EventBus.emit(SEND_MESSAGE_TO);
+        });
+        this.refs.input.value = '';
+        this.props.onUpdateMessage('');
+      });
     }
     render() {
         let messages = this.props.conversation.map((message, index) => {
