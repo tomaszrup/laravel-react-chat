@@ -40,7 +40,7 @@ class UserPanel extends Component {
                 </div>
               </div>
               <div className="menu-container">
-                <i className="fa fa-ellipsis-v" aria-hidden="true" onClick={this.toggleMenu}></i>
+                <i className={'fa fa-ellipsis-v ' + (this.state.menuOpen ? 'open' : '')} aria-hidden="true" onClick={this.toggleMenu}></i>
                 { menu }
                 <form ref="form" action="/logout" method="post" className="hidden">
                   <input type="hidden" name="_token" value={window.token} />

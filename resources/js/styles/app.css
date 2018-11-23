@@ -5,6 +5,7 @@ body {
   align-items: center;
   position: relative;
   height: 100vh;
+  overflow: hidden;
 }
 
 .hidden {
@@ -23,13 +24,14 @@ body {
 
 .chat-container {
   z-index: 1;
-  height: 90vh;
+  height: 95vh;
   width: 70vw;
   background-color: white;
   position: relative;
   display: flex;
   flex-direction: row;
   min-width: 700px;
+  border-radius: 4px;
 }
 
 .left-section {
@@ -62,7 +64,7 @@ body {
 }
 
 .friend-card.active, .friend-card:hover {
-  background-color: #d5d5d5;
+  background-color: #c5c5c5;
 }
 
 .friend-avatar {
@@ -82,18 +84,18 @@ body {
 }
 
 .friend-name {
-  color: #333;
-  font-size: 1.3em;
+  color: #111;
+  font-size: 1.35em;
 }
 
 .friend-last-message .time {
-  color: orangered;
-  font-size: 0.7em;
+  color: #a22b00;
+  font-size: 0.9em;
   float: right
 }
 
 .friend-last-message {
-  font-size: 0.9em;
+  font-size: 0.7em;
   opacity: 0.8;
   max-width: 100%;
   word-break: break-all;
@@ -198,7 +200,7 @@ body {
   padding-right: 10px;
   justify-content: center;
   align-items: center;
-  background-color: #333;
+  background-color: #993ac1;
   color: white;
 }
 
@@ -248,9 +250,11 @@ body {
 .menu-container .collection {
   color: #333;
   position: absolute;
-  bottom: -50px;
-  font-size: 0.9em;
+  top: 40px;
+  font-size: 0.8em;
   z-index: 10;
+  right: 0px;
+  border-radius: 0;
 }
 
 .menu-container i {
@@ -261,6 +265,29 @@ body {
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
+}
+
+.menu-container i {
+  cursor: pointer;
+  padding: 8px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  transition: .1s all ease-in-out;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu-container i::before {
+  margin-bottom: -1px;
+}
+.menu-container i.open {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .user-email {
