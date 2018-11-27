@@ -2,6 +2,7 @@ require('./../bootstrap');
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import MockChat from './MockChat';
+import Form from './Form';
 
 import './../styles/app.css';
 import './app.css';
@@ -12,8 +13,11 @@ class App extends Component {
               <div className="landing">
                   <div className="top-bar">
                   </div>
-                  <div className="left-container">
+                  <div className="landing-column">
                     <MockChat />
+                  </div>
+                  <div className="landing-column">
+                    <Form />
                   </div>
               </div>
           );

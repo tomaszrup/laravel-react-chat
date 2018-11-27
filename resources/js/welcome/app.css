@@ -7,6 +7,9 @@ html, body, #app {
 .landing {
   height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: white;
 }
 
@@ -16,12 +19,9 @@ html, body, #app {
   background-color: white;
 }
 
-.left-container {
-  position: absolute;
+.landing-column {
   height: 100%;
   width: 50%;
-  top: 0;
-  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,6 +30,7 @@ html, body, #app {
 .mock-chat-container {
   width: 80%;
   height: 80%;
+  min-width: 0;
 }
 
 .mock-chat-container .user-name, .mock-chat-container .friend-name {
@@ -59,6 +60,10 @@ html, body, #app {
   width: 80%;
 }
 
+.message-body {
+  user-select: none;
+}
+
 .message:nth-child(1) .message-body {
   width: 40%;
 }
@@ -69,4 +74,36 @@ html, body, #app {
 
 .message:nth-child(3) .message-body {
   width: 20%;
+}
+
+
+.login-modal {
+  height: 60%;
+  width: 75%;
+
+  margin-right: 15%;
+}
+
+.login-modal h1 {
+  font-size: 3em;
+}
+
+.login-modal form {
+  margin-top: 30px;
+}
+
+.btn-wide {
+  min-width: 160px;
+  margin-right: 20px;
+}
+
+.submits {
+  margin-top: 50px;
+  padding: 11px;
+  display: flex;
+  align-items: center;
+}
+
+.text-right {
+  text-align: right;
 }

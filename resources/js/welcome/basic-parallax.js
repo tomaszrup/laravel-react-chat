@@ -11,8 +11,8 @@ class Parallax {
       let nodes = document.querySelectorAll(element.selector);
       for(let node of nodes) {
         let rect = node.getBoundingClientRect();
-        let offsetX = ((rect.x - x) / 100) * element.speed * (element.inverseX ? -1 : 1);
-        let offsetY = ((rect.y - y) / 100) * element.speed * (element.inverseY ? -1 : 1);
+        let offsetX = ((x - screen.width / 2) / 80) * element.speed * (element.inverseX ? -1 : 1);
+        let offsetY = ((y - screen.height / 2) / 80) * element.speed * (element.inverseY ? -1 : 1);
 
         node.style.transform = "translate(" + offsetX + "px, " + offsetY + "px)";
       }
