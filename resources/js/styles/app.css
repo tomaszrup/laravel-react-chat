@@ -309,3 +309,10 @@ body {
 .justify-right {
   justify-content: flex-start;
 }
+
+@media screen and (max-width: 720px) {
+  .chat-container, #app {
+    height: 100%;
+    width: 100%;
+  }
+}

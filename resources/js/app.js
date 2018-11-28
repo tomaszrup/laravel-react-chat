@@ -12,10 +12,10 @@ class App extends Component {
     render() {
           return (
             <Provider store={store}>
-              <div>
+              <React.Fragment>
                 <div className="top-bar"></div>
                 <ChatContainer />
-              </div>
+              </React.Fragment>
             </Provider>
           );
     }

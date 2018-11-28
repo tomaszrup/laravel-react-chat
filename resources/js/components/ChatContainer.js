@@ -36,7 +36,7 @@ class ChatContainer extends Component {
       EventBus.on(SEND_MESSAGE_TO, () => {this.props.onFetchConversationWith(this.props.activeUserId)} );
 
       this.state.timeline.from('.chat-container', 1.3, {
-        height: 0,
+        scale: 0.9,
         opacity: 0,
         ease: Power4.easeOut
       });

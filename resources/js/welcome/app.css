@@ -118,3 +118,12 @@ html, body, #app {
 .text-right {
   text-align: right;
 }
+
+@media screen and (max-width: 860px) {
+  #app > div > div:nth-child(2) {
+    display: none;
+  }
+  .landing-column {
+    width: 100%;
+  }
+}

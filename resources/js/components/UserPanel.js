@@ -25,7 +25,7 @@ class UserPanel extends Component {
     }
     render() {
         let menu = this.state.menuOpen ? (<ul className="collection menu">
-              <li className="collection-item" onClick={this.logout}><a href="#">Logout</a></li>
+              <li className="collection-item"><a href="#" onClick={this.logout}>Logout</a></li>
               </ul>) : '';
         return (
           <div className="user-panel">
