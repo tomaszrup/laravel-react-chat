@@ -84,6 +84,9 @@ html, body, #app {
   width: 20%;
 }
 
+.errors {
+  color: red;
+}
 
 .login-modal {
   height: 60%;

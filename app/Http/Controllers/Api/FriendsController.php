@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Api\ApiController;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
 use App\Helpers\Conversation;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-class FriendsController extends Controller
+class FriendsController extends ApiController
 {
     /**
      * Create a new controller instance.
@@ -26,11 +26,11 @@ class FriendsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(User $user) {
-      
+
       // Fetch friends
       $friends = User::where('id', "!=", Auth::id())->get();
 
-      return $friends;
+      return $this->respond($friends);
     }
 
 

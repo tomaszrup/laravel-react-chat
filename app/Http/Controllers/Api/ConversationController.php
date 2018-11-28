@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Api\ApiController;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
 use App\Helpers\Conversation;
 use Illuminate\Http\Request;
 use App\Events\MessageSent;
 use App\Models\Message;
 use App\Models\User;
 
-class ConversationController extends Controller
+class ConversationController extends ApiController
 {
     /**
      * Create a new controller instance.
@@ -30,13 +30,12 @@ class ConversationController extends Controller
     public function index(User $user) {
       $conversation = new Conversation(Auth::user(), $user);
 
-      return $conversation->messages(40, true);
+      return $this->respond($conversation->messages(40, true));
     }
 
     public function store(Request $request, User $user) {
 
-      // Needs api base class
-      if(!$user) return;
+      if(!$user) return $this->respondUnprocessable();
 
       $request->validate([
         'message' => ['required', 'max:180']
@@ -56,15 +55,14 @@ class ConversationController extends Controller
     public function last(User $user = null) {
       if($user) {
           $conversation = new Conversation(Auth::user(), $user);
-          return $conversation->lastMessage();
+          return $this->respond($conversation->lastMessage());
       }
 
-      //Need to implement friends
       $messages = User::where('id', '!=', Auth::id())->get()->mapWithKeys(function($user) {
         $conversation = new Conversation(Auth::user(), $user);
         return [$user->id => $conversation->lastMessage()];
       });
 
-      return $messages;
+      return $this->respond($messages);
     }
 }

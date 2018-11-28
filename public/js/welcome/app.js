@@ -60802,7 +60802,12 @@ var MockChat = function (_Component) {
   function MockChat() {
     _classCallCheck(this, MockChat);
 
-    return _possibleConstructorReturn(this, (MockChat.__proto__ || Object.getPrototypeOf(MockChat)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (MockChat.__proto__ || Object.getPrototypeOf(MockChat)).call(this));
+
+    _this.state = {
+      messages: []
+    };
+    return _this;
   }
 
   _createClass(MockChat, [{
@@ -60837,8 +60842,35 @@ var MockChat = function (_Component) {
       });
     }
   }, {
+    key: 'pushMsg',
+    value: function pushMsg(e) {
+      if (!this.refs.input.value) return;
+
+      var msgs = this.state.messages;
+      msgs.push(this.refs.input.value);
+
+      this.setState({ messages: msgs });
+      this.refs.input.value = '';
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
+      var messagesMock = this.state.messages.map(function (msg, index) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'message', key: index },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'span',
+            { className: 'message-body sent' },
+            ' ',
+            msg,
+            ' '
+          )
+        );
+      });
+
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'chat-container mock-chat-container z-depth-4' },
@@ -60942,13 +60974,18 @@ var MockChat = function (_Component) {
                   { className: 'message-body received' },
                   ' \xA0 '
                 )
-              )
+              ),
+              messagesMock
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { className: 'inputs' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text' }),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { className: 'send-button z-depth-1' })
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', ref: 'input', maxLength: '180', onKeyPress: function onKeyPress(e) {
+                  if (e.key === 'Enter') _this2.pushMsg();
+                } }),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { className: 'send-button z-depth-1', onClick: function onClick(e) {
+                  return _this2.pushMsg();
+                } })
             )
           )
         )
@@ -61095,6 +61132,8 @@ var Parallax = function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -61115,10 +61154,24 @@ var Form = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this));
 
     _this.state = {
-      register: true
+      loading: false,
+      register: true,
+      registerForm: {
+        name: '',
+        email: '',
+        password: '',
+        password_confirmation: ''
+      },
+      loginForm: {
+        email: '',
+        password: ''
+      },
+      errors: []
     };
 
     _this.toggleForm = _this.toggleForm.bind(_this);
+    _this.register = _this.register.bind(_this);
+    _this.login = _this.login.bind(_this);
     return _this;
   }
 
@@ -61130,17 +61183,67 @@ var Form = function (_Component) {
   }, {
     key: 'login',
     value: function login(event) {
+      var _this2 = this;
+
       event.preventDefault();
+      this.setState({ errors: [], loading: true });
+
+      axios.post('/login', this.state.loginForm).then(function (response) {
+        location.reload();
+      }).catch(function (error) {
+        _this2.setState({ loading: false, errors: error.response.data.errors });
+      });
     }
   }, {
     key: 'register',
     value: function register(event) {
+      var _this3 = this;
+
       event.preventDefault();
+      this.setState({ errors: [], loading: true });
+
+      axios.post('/register', this.state.registerForm).then(function (response) {
+        location.reload();
+      }).catch(function (error) {
+        _this3.setState({ loading: false, errors: error.response.data.errors });
+      });
     }
   }, {
     key: 'render',
     value: function render() {
-      var buttonText = this.register ? "Sign up" : "Sign in";
+      var _this4 = this;
+
+      var buttonText = this.state.loading ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { 'class': 'preloader-wrapper small active mt-1' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { 'class': 'spinner-layer spinner-red-only' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { 'class': 'circle-clipper left' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { 'class': 'circle' })
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { 'class': 'gap-patch' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { 'class': 'circle' })
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { 'class': 'circle-clipper right' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { 'class': 'circle' })
+          )
+        )
+      ) : this.state.register ? "Sign up" : "Sign in";
+
+      var errors = Object.keys(this.state.errors).map(function (error, index) {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'p',
+          { className: 'error', key: index },
+          _this4.state.errors[error]
+        );
+      });
 
       if (this.state.register) return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
@@ -61164,12 +61267,16 @@ var Form = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { className: 'input-field col s6' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', placeholder: 'Name', required: true })
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', placeholder: 'Name', name: 'name', required: true, onChange: function onChange(e) {
+                  return _this4.setState({ registerForm: _extends({}, _this4.state.registerForm, { name: e.target.value }) });
+                } })
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { className: 'input-field col s6' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'email', placeholder: 'Email', required: true })
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'email', placeholder: 'Email', name: 'email', required: true, onChange: function onChange(e) {
+                  return _this4.setState({ registerForm: _extends({}, _this4.state.registerForm, { email: e.target.value }) });
+                } })
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -61178,12 +61285,16 @@ var Form = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { className: 'input-field col s6' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'password', placeholder: 'Password', required: true })
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'password', placeholder: 'Password', name: 'password', required: true, onChange: function onChange(e) {
+                  return _this4.setState({ registerForm: _extends({}, _this4.state.registerForm, { password: e.target.value }) });
+                } })
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { className: 'input-field col s6' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'password', placeholder: 'Password Confirmation', required: true })
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'password', placeholder: 'Password Confirmation', name: 'password_confirmation', required: true, onChange: function onChange(e) {
+                  return _this4.setState({ registerForm: _extends({}, _this4.state.registerForm, { password_confirmation: e.target.value }) });
+                } })
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -61192,13 +61303,18 @@ var Form = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'button',
               { className: 'btn waves-effect waves-light btn-large btn-wide', type: 'submit', name: 'action' },
-              'Sign Up'
+              buttonText
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'a',
               { href: '#', onClick: this.toggleForm },
               'Already have an account?'
             )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'errors' },
+            errors
           )
         )
       );else return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -61223,7 +61339,9 @@ var Form = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { className: 'input-field col s6' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'email', placeholder: 'Email', required: true })
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'email', placeholder: 'Email', name: 'email', required: true, onChange: function onChange(e) {
+                  return _this4.setState({ loginForm: _extends({}, _this4.state.loginForm, { email: e.target.value }) });
+                } })
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'input-field col s6' })
           ),
@@ -61233,7 +61351,9 @@ var Form = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { className: 'input-field col s6' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'password', placeholder: 'Password', required: true })
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'password', placeholder: 'Password', name: 'password', required: true, onChange: function onChange(e) {
+                  return _this4.setState({ loginForm: _extends({}, _this4.state.loginForm, { password: e.target.value }) });
+                } })
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'input-field col s6' })
           ),
@@ -61250,6 +61370,11 @@ var Form = function (_Component) {
               { href: '#', onClick: this.toggleForm },
               'Need a new account?'
             )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'errors' },
+            errors
           )
         )
       );
@@ -61301,7 +61426,7 @@ exports = module.exports = __webpack_require__(16)(false);
 
 
 // module
-exports.push([module.i, "html, body, #app {\r\n  height: 100%;\r\n  width: 100%;\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n.landing {\r\n  height: 100%;\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  background-color: white;\r\n}\r\n\r\n.landing-modal {\r\n  width: 50%;\r\n  height: 60%;\r\n  background-color: white;\r\n}\r\n\r\n.scene {\r\n  height: 100%;\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.landing-column {\r\n  height: 100%;\r\n  width: 50%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.mock-chat-container {\r\n  width: 80%;\r\n  height: 80%;\r\n  min-width: 0;\r\n}\r\n\r\n.mock-chat-container .user-name, .mock-chat-container .friend-name {\r\n  height: 13px;\r\n  background-color: rgba(0,0,0,0.3);\r\n  width: 40%;\r\n}\r\n.mock-chat-container .friend-name {\r\n  width: 80%;\r\n  margin-top: 8px;\r\n}\r\n.mock-chat-container .friend-last-message {\r\n  width: 30%;\r\n  background-color: rgba(0,0,0,0.3);\r\n  height: 10px;\r\n  margin-top: 5px;\r\n}\r\n\r\n.mock-chat-container .user-avatar {\r\n  opacity: 0.6;\r\n}\r\n\r\n.mock-chat-container .user-email {\r\n  height: 13px;\r\n  background-color: rgba(0,0,0,0.15);\r\n  margin-top: 2px;\r\n  width: 80%;\r\n}\r\n\r\n.message-body {\r\n  user-select: none;\r\n}\r\n\r\n.message:nth-child(1) .message-body {\r\n  width: 40%;\r\n}\r\n\r\n.message:nth-child(2) .message-body {\r\n  width: 50%;\r\n}\r\n\r\n.message:nth-child(3) .message-body {\r\n  width: 20%;\r\n}\r\n\r\n\r\n.login-modal {\r\n  height: 60%;\r\n  width: 75%;\r\n\r\n  margin-right: 15%;\r\n}\r\n\r\n.login-modal h1 {\r\n  font-size: 3em;\r\n}\r\n\r\n.login-modal form {\r\n  margin-top: 30px;\r\n}\r\n\r\n.btn-wide {\r\n  min-width: 160px;\r\n  margin-right: 20px;\r\n}\r\n\r\n.submits {\r\n  margin-top: 50px;\r\n  padding: 11px;\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.text-right {\r\n  text-align: right;\r\n}\r\n", ""]);
+exports.push([module.i, "html, body, #app {\r\n  height: 100%;\r\n  width: 100%;\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n.landing {\r\n  height: 100%;\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  background-color: white;\r\n}\r\n\r\n.landing-modal {\r\n  width: 50%;\r\n  height: 60%;\r\n  background-color: white;\r\n}\r\n\r\n.scene {\r\n  height: 100%;\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.landing-column {\r\n  height: 100%;\r\n  width: 50%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.mock-chat-container {\r\n  width: 80%;\r\n  height: 80%;\r\n  min-width: 0;\r\n}\r\n\r\n.mock-chat-container .user-name, .mock-chat-container .friend-name {\r\n  height: 13px;\r\n  background-color: rgba(0,0,0,0.3);\r\n  width: 40%;\r\n}\r\n.mock-chat-container .friend-name {\r\n  width: 80%;\r\n  margin-top: 8px;\r\n}\r\n.mock-chat-container .friend-last-message {\r\n  width: 30%;\r\n  background-color: rgba(0,0,0,0.3);\r\n  height: 10px;\r\n  margin-top: 5px;\r\n}\r\n\r\n.mock-chat-container .user-avatar {\r\n  opacity: 0.6;\r\n}\r\n\r\n.mock-chat-container .user-email {\r\n  height: 13px;\r\n  background-color: rgba(0,0,0,0.15);\r\n  margin-top: 2px;\r\n  width: 80%;\r\n}\r\n\r\n.message-body {\r\n  user-select: none;\r\n}\r\n\r\n.message:nth-child(1) .message-body {\r\n  width: 40%;\r\n}\r\n\r\n.message:nth-child(2) .message-body {\r\n  width: 50%;\r\n}\r\n\r\n.message:nth-child(3) .message-body {\r\n  width: 20%;\r\n}\r\n\r\n.errors {\r\n  color: red;\r\n}\r\n\r\n.login-modal {\r\n  height: 60%;\r\n  width: 75%;\r\n\r\n  margin-right: 15%;\r\n}\r\n\r\n.login-modal h1 {\r\n  font-size: 3em;\r\n}\r\n\r\n.login-modal form {\r\n  margin-top: 30px;\r\n}\r\n\r\n.btn-wide {\r\n  min-width: 160px;\r\n  margin-right: 20px;\r\n}\r\n\r\n.submits {\r\n  margin-top: 50px;\r\n  padding: 11px;\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.text-right {\r\n  text-align: right;\r\n}\r\n", ""]);
 
 // exports
 

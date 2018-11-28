@@ -12,16 +12,22 @@
 */
 
 Route::get('/', function () {
+  if(Auth::user()) return redirect('home');
     return view('landing/landing');
 });
+
+Route::post('/login', 'Auth\LoginController@login')->name('login');
+Route::post('/register', 'Auth\RegisterController@register')->name('register');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+/*
 Route::any('/home/{query}',
   function() { return redirect('/home'); })
   ->where('query', '.*');
+*/
 
 Route::prefix('api')->group(function() {
   // This routing can be better

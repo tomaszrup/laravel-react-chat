@@ -5,6 +5,13 @@ import { TimelineMax, Power4 } from "gsap/TweenMax";
 import Parallax from './basic-parallax';
 
 export default class MockChat extends Component {
+    constructor() {
+      super();
+
+      this.state = {
+        messages: []
+      }
+    }
     componentDidMount() {
       (new TimelineMax).from('.chat-container', 1, {
         height: 0,
@@ -34,7 +41,24 @@ export default class MockChat extends Component {
         speed: 0.5
       });
     }
+    pushMsg(e) {
+      if(!this.refs.input.value) return;
+
+      let msgs = this.state.messages;
+      msgs.push(this.refs.input.value);
+
+      this.setState({messages: msgs});
+      this.refs.input.value = '';
+    }
     render() {
+        let messagesMock = this.state.messages.map((msg, index) => {
+          return (
+            <div className="message" key={index}>
+              <span className="message-body sent"> {msg} </span>
+            </div>
+          )
+        });
+
         return (
           <div className="chat-container mock-chat-container z-depth-4">
             <div className="left-section">
@@ -92,10 +116,11 @@ export default class MockChat extends Component {
                   <div className="message">
                     <span className="message-body received"> &nbsp; </span>
                   </div>
+                  {messagesMock}
                 </div>
                 <div className="inputs">
-                  <input type="text"/>
-                  <button className="send-button z-depth-1">
+                  <input type="text" ref="input" maxLength="180" onKeyPress={e => {if(e.key === 'Enter') this.pushMsg();} }/>
+                  <button className="send-button z-depth-1" onClick={e => this.pushMsg()}>
                   </button>
                 </div>
               </div>
