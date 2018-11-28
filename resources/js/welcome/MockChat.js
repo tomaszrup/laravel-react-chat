@@ -13,25 +13,25 @@ export default class MockChat extends Component {
       });
 
       Parallax.add(['.user-info', '.user-avatar'], {
-        speed: 0.4
+        speed: 0.5
       });
 
       Parallax.add(['.friend-avatar', '.friend-text'], {
-        speed: 0.7
+        speed: 0.5
       });
 
       Parallax.add('.message', {
-        speed: 0.3
+        speed: 0.1
       });
 
       Parallax.add('.chat-container', {
-        speed: 1.3,
+        speed: 0.3,
         inverseX: true,
         inverseY: true
       });
 
       Parallax.add('.send-button', {
-        speed: 0.8
+        speed: 0.5
       });
     }
     render() {
@@ -39,37 +39,37 @@ export default class MockChat extends Component {
           <div className="chat-container mock-chat-container z-depth-4">
             <div className="left-section">
               <div className="user-panel">
-                <div className="user-avatar z-depth-1">
+                <div className="user-avatar z-depth-0">
                 </div>
                 <div className="user-info">
                   <div className="user-text">
-                    <div className="user-name z-depth-1">
+                    <div className="user-name z-depth-0">
                     </div>
-                    <div className="user-email z-depth-1">
+                    <div className="user-email z-depth-0">
                     </div>
                   </div>
                 </div>
               </div>
               <div className="friend-list">
                 <div className="friend-card">
-                  <div className="friend-avatar z-depth-1"></div>
+                  <div className="friend-avatar z-depth-0"></div>
                   <div className="friend-text">
-                    <div className="friend-name z-depth-1"></div>
-                    <div className="friend-last-message z-depth-1"></div>
+                    <div className="friend-name z-depth-0"></div>
+                    <div className="friend-last-message z-depth-0"></div>
                   </div>
                 </div>
                 <div className="friend-card active">
-                  <div className="friend-avatar z-depth-1"></div>
+                  <div className="friend-avatar z-depth-0"></div>
                   <div className="friend-text">
-                    <div className="friend-name z-depth-1"></div>
-                    <div className="friend-last-message z-depth-1"></div>
+                    <div className="friend-name z-depth-0"></div>
+                    <div className="friend-last-message z-depth-0"></div>
                   </div>
                 </div>
                 <div className="friend-card">
-                  <div className="friend-avatar z-depth-1"></div>
+                  <div className="friend-avatar z-depth-0"></div>
                   <div className="friend-text">
-                    <div className="friend-name z-depth-1"></div>
-                    <div className="friend-last-message z-depth-1"></div>
+                    <div className="friend-name z-depth-0"></div>
+                    <div className="friend-last-message z-depth-0"></div>
                   </div>
                 </div>
               </div>
@@ -77,20 +77,20 @@ export default class MockChat extends Component {
             <div className="right-section">
               <div className="user-panel in-chat">
                 <div className="user-info justify-right">
-                  <div className="user-name z-depth-1">
+                  <div className="user-name z-depth-0">
                   </div>
                 </div>
               </div>
               <div className="chat">
                 <div className="messages styled-scrollbar">
                   <div className="message">
-                    <span className="message-body received z-depth-1"> &nbsp; </span>
+                    <span className="message-body received"> &nbsp; </span>
                   </div>
                   <div className="message">
-                    <span className="message-body sent z-depth-1"> &nbsp; </span>
+                    <span className="message-body sent"> &nbsp; </span>
                   </div>
                   <div className="message">
-                    <span className="message-body received z-depth-1"> &nbsp; </span>
+                    <span className="message-body received"> &nbsp; </span>
                   </div>
                 </div>
                 <div className="inputs">

@@ -19,6 +19,14 @@ html, body, #app {
   background-color: white;
 }
 
+.scene {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .landing-column {
   height: 100%;
   width: 50%;

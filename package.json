@@ -20,6 +20,7 @@
         "laravel-echo": "^1.4.1",
         "laravel-mix": "^2.0",
         "lodash": "^4.17.5",
+        "parallax-js": "^3.1.0",
         "popper.js": "^1.12",
         "pusher-js": "^4.3.1",
         "react": "^16.2.0",

@@ -60815,25 +60815,25 @@ var MockChat = function (_Component) {
       });
 
       __WEBPACK_IMPORTED_MODULE_3__basic_parallax__["a" /* default */].add(['.user-info', '.user-avatar'], {
-        speed: 0.4
+        speed: 0.5
       });
 
       __WEBPACK_IMPORTED_MODULE_3__basic_parallax__["a" /* default */].add(['.friend-avatar', '.friend-text'], {
-        speed: 0.7
+        speed: 0.5
       });
 
       __WEBPACK_IMPORTED_MODULE_3__basic_parallax__["a" /* default */].add('.message', {
-        speed: 0.3
+        speed: 0.1
       });
 
       __WEBPACK_IMPORTED_MODULE_3__basic_parallax__["a" /* default */].add('.chat-container', {
-        speed: 1.3,
+        speed: 0.3,
         inverseX: true,
         inverseY: true
       });
 
       __WEBPACK_IMPORTED_MODULE_3__basic_parallax__["a" /* default */].add('.send-button', {
-        speed: 0.8
+        speed: 0.5
       });
     }
   }, {
@@ -60848,15 +60848,15 @@ var MockChat = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'user-panel' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'user-avatar z-depth-1' }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'user-avatar z-depth-0' }),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { className: 'user-info' },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'user-text' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'user-name z-depth-1' }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'user-email z-depth-1' })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'user-name z-depth-0' }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'user-email z-depth-0' })
               )
             )
           ),
@@ -60866,34 +60866,34 @@ var MockChat = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { className: 'friend-card' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'friend-avatar z-depth-1' }),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'friend-avatar z-depth-0' }),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'friend-text' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'friend-name z-depth-1' }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'friend-last-message z-depth-1' })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'friend-name z-depth-0' }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'friend-last-message z-depth-0' })
               )
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { className: 'friend-card active' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'friend-avatar z-depth-1' }),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'friend-avatar z-depth-0' }),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'friend-text' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'friend-name z-depth-1' }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'friend-last-message z-depth-1' })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'friend-name z-depth-0' }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'friend-last-message z-depth-0' })
               )
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { className: 'friend-card' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'friend-avatar z-depth-1' }),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'friend-avatar z-depth-0' }),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'friend-text' },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'friend-name z-depth-1' }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'friend-last-message z-depth-1' })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'friend-name z-depth-0' }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'friend-last-message z-depth-0' })
               )
             )
           )
@@ -60907,7 +60907,7 @@ var MockChat = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { className: 'user-info justify-right' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'user-name z-depth-1' })
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'user-name z-depth-0' })
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -60921,7 +60921,7 @@ var MockChat = function (_Component) {
                 { className: 'message' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'span',
-                  { className: 'message-body received z-depth-1' },
+                  { className: 'message-body received' },
                   ' \xA0 '
                 )
               ),
@@ -60930,7 +60930,7 @@ var MockChat = function (_Component) {
                 { className: 'message' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'span',
-                  { className: 'message-body sent z-depth-1' },
+                  { className: 'message-body sent' },
                   ' \xA0 '
                 )
               ),
@@ -60939,7 +60939,7 @@ var MockChat = function (_Component) {
                 { className: 'message' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'span',
-                  { className: 'message-body received z-depth-1' },
+                  { className: 'message-body received' },
                   ' \xA0 '
                 )
               )
@@ -61112,13 +61112,37 @@ var Form = function (_Component) {
   function Form() {
     _classCallCheck(this, Form);
 
-    return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this));
+
+    _this.state = {
+      register: true
+    };
+
+    _this.toggleForm = _this.toggleForm.bind(_this);
+    return _this;
   }
 
   _createClass(Form, [{
+    key: 'toggleForm',
+    value: function toggleForm() {
+      this.setState({ register: !this.state.register });
+    }
+  }, {
+    key: 'login',
+    value: function login(event) {
+      event.preventDefault();
+    }
+  }, {
+    key: 'register',
+    value: function register(event) {
+      event.preventDefault();
+    }
+  }, {
     key: 'render',
     value: function render() {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      var buttonText = this.register ? "Sign up" : "Sign in";
+
+      if (this.state.register) return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
         { className: 'login-modal' },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -61133,19 +61157,19 @@ var Form = function (_Component) {
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           'form',
-          { className: 'col s12' },
+          { className: 'col s12', onSubmit: this.register },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'row' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { className: 'input-field col s6' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', placeholder: 'Name' })
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', placeholder: 'Name', required: true })
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { className: 'input-field col s6' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', placeholder: 'Email' })
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'email', placeholder: 'Email', required: true })
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -61154,12 +61178,12 @@ var Form = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { className: 'input-field col s6' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'password', placeholder: 'Password' })
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'password', placeholder: 'Password', required: true })
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'div',
               { className: 'input-field col s6' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'password', placeholder: 'Password Confirmation' })
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'password', placeholder: 'Password Confirmation', required: true })
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -61168,12 +61192,63 @@ var Form = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'button',
               { className: 'btn waves-effect waves-light btn-large btn-wide', type: 'submit', name: 'action' },
-              'Submit'
+              'Sign Up'
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'a',
-              { href: '#' },
+              { href: '#', onClick: this.toggleForm },
               'Already have an account?'
+            )
+          )
+        )
+      );else return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'login-modal' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h1',
+          null,
+          'Join and get connected.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'h4',
+          null,
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis interdum diam vel magna sollicitudin interdum. Fusce ut mollis mi, ut blandit velit. Suspendisse potenti. Aliquam pharetra sapien erat, quis suscipit lorem porta id.'
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'form',
+          { className: 'col s12', onSubmit: this.login },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'row' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'input-field col s6' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'email', placeholder: 'Email', required: true })
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'input-field col s6' })
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'row' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'input-field col s6' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'password', placeholder: 'Password', required: true })
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'input-field col s6' })
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: 'row submits' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'button',
+              { className: 'btn waves-effect waves-light btn-large btn-wide', type: 'submit', name: 'action' },
+              buttonText
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'a',
+              { href: '#', onClick: this.toggleForm },
+              'Need a new account?'
             )
           )
         )
@@ -61226,7 +61301,7 @@ exports = module.exports = __webpack_require__(16)(false);
 
 
 // module
-exports.push([module.i, "html, body, #app {\r\n  height: 100%;\r\n  width: 100%;\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n.landing {\r\n  height: 100%;\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  background-color: white;\r\n}\r\n\r\n.landing-modal {\r\n  width: 50%;\r\n  height: 60%;\r\n  background-color: white;\r\n}\r\n\r\n.landing-column {\r\n  height: 100%;\r\n  width: 50%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.mock-chat-container {\r\n  width: 80%;\r\n  height: 80%;\r\n  min-width: 0;\r\n}\r\n\r\n.mock-chat-container .user-name, .mock-chat-container .friend-name {\r\n  height: 13px;\r\n  background-color: rgba(0,0,0,0.3);\r\n  width: 40%;\r\n}\r\n.mock-chat-container .friend-name {\r\n  width: 80%;\r\n  margin-top: 8px;\r\n}\r\n.mock-chat-container .friend-last-message {\r\n  width: 30%;\r\n  background-color: rgba(0,0,0,0.3);\r\n  height: 10px;\r\n  margin-top: 5px;\r\n}\r\n\r\n.mock-chat-container .user-avatar {\r\n  opacity: 0.6;\r\n}\r\n\r\n.mock-chat-container .user-email {\r\n  height: 13px;\r\n  background-color: rgba(0,0,0,0.15);\r\n  margin-top: 2px;\r\n  width: 80%;\r\n}\r\n\r\n.message-body {\r\n  user-select: none;\r\n}\r\n\r\n.message:nth-child(1) .message-body {\r\n  width: 40%;\r\n}\r\n\r\n.message:nth-child(2) .message-body {\r\n  width: 50%;\r\n}\r\n\r\n.message:nth-child(3) .message-body {\r\n  width: 20%;\r\n}\r\n\r\n\r\n.login-modal {\r\n  height: 60%;\r\n  width: 75%;\r\n\r\n  margin-right: 15%;\r\n}\r\n\r\n.login-modal h1 {\r\n  font-size: 3em;\r\n}\r\n\r\n.login-modal form {\r\n  margin-top: 30px;\r\n}\r\n\r\n.btn-wide {\r\n  min-width: 160px;\r\n  margin-right: 20px;\r\n}\r\n\r\n.submits {\r\n  margin-top: 50px;\r\n  padding: 11px;\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.text-right {\r\n  text-align: right;\r\n}\r\n", ""]);
+exports.push([module.i, "html, body, #app {\r\n  height: 100%;\r\n  width: 100%;\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n.landing {\r\n  height: 100%;\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  background-color: white;\r\n}\r\n\r\n.landing-modal {\r\n  width: 50%;\r\n  height: 60%;\r\n  background-color: white;\r\n}\r\n\r\n.scene {\r\n  height: 100%;\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.landing-column {\r\n  height: 100%;\r\n  width: 50%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.mock-chat-container {\r\n  width: 80%;\r\n  height: 80%;\r\n  min-width: 0;\r\n}\r\n\r\n.mock-chat-container .user-name, .mock-chat-container .friend-name {\r\n  height: 13px;\r\n  background-color: rgba(0,0,0,0.3);\r\n  width: 40%;\r\n}\r\n.mock-chat-container .friend-name {\r\n  width: 80%;\r\n  margin-top: 8px;\r\n}\r\n.mock-chat-container .friend-last-message {\r\n  width: 30%;\r\n  background-color: rgba(0,0,0,0.3);\r\n  height: 10px;\r\n  margin-top: 5px;\r\n}\r\n\r\n.mock-chat-container .user-avatar {\r\n  opacity: 0.6;\r\n}\r\n\r\n.mock-chat-container .user-email {\r\n  height: 13px;\r\n  background-color: rgba(0,0,0,0.15);\r\n  margin-top: 2px;\r\n  width: 80%;\r\n}\r\n\r\n.message-body {\r\n  user-select: none;\r\n}\r\n\r\n.message:nth-child(1) .message-body {\r\n  width: 40%;\r\n}\r\n\r\n.message:nth-child(2) .message-body {\r\n  width: 50%;\r\n}\r\n\r\n.message:nth-child(3) .message-body {\r\n  width: 20%;\r\n}\r\n\r\n\r\n.login-modal {\r\n  height: 60%;\r\n  width: 75%;\r\n\r\n  margin-right: 15%;\r\n}\r\n\r\n.login-modal h1 {\r\n  font-size: 3em;\r\n}\r\n\r\n.login-modal form {\r\n  margin-top: 30px;\r\n}\r\n\r\n.btn-wide {\r\n  min-width: 160px;\r\n  margin-right: 20px;\r\n}\r\n\r\n.submits {\r\n  margin-top: 50px;\r\n  padding: 11px;\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n\r\n.text-right {\r\n  text-align: right;\r\n}\r\n", ""]);
 
 // exports
 
